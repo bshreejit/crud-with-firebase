@@ -20,7 +20,7 @@ public class CrudController {
     }
 
     @GetMapping("/get")
-    public String getUser(@RequestParam String documentId) throws InterruptedException, ExecutionException{
+    public User getUser(@RequestParam String documentId) throws InterruptedException, ExecutionException{
         return crudService.getUser(documentId);
     }
 
