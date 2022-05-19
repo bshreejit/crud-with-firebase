@@ -22,7 +22,7 @@ public class CrudServiceImpl implements CrudService {
 
     @Override
     public String createUser(User user){
-        ApiFuture<WriteResult> collectionApiFuture = dbFireStore.collection("crud_user").document(user.getName()).set(user);
+        ApiFuture<WriteResult> collectionApiFuture = dbFireStore.collection("crud_user").document(user.getDocumentId()).set(user);
         try{
             return collectionApiFuture.get().getUpdateTime().toString();
         }catch(ExecutionException ee){
@@ -53,8 +53,15 @@ public class CrudServiceImpl implements CrudService {
     }
 
     @Override
-    public String updateUser(String documentId, User user) {
-        return null;
+    public String updateUser(User user) {
+        ApiFuture<WriteResult> collectionApiFuture = dbFireStore.collection("crud_user").document(user.getDocumentId()).set(user);
+        try{
+            return collectionApiFuture.get().getUpdateTime().toString();
+        }catch(ExecutionException ee){
+            return "Execution Exception :: " + ee;
+        }catch(InterruptedException ie){
+            return "Interrupted Exception :: " + ie;
+        }
     }
 
     @Override
