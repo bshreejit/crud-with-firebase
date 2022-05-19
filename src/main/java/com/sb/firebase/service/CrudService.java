@@ -10,7 +10,7 @@ public interface CrudService {
 
     public User getUser(String documentId);
 
-    public String updateUser(String documentId, User user);
+    public String updateUser(User user);
 
     public String deleteUser(String documentId);
 }
